@@ -1,0 +1,9 @@
+{
+  "errormessages":{
+      "generic":{
+          "header-info":"We're sorry.",
+          "body-info":"The information entered was incorrect.",
+          "body-description":"Please try again or verify with your RVP that you have access."
+      }
+  }
+}

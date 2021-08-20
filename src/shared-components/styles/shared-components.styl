@@ -1,0 +1,45 @@
+@import './mixins';
+
+.sc-wrap-text
+  wrapWithDots;
+
+
+.sc-text--error
+  color: var(--v-error-base);
+
+
+.sc-label
+  display: inline-block;
+  flex: 1 1 100% !important;
+  width: 100% !important;
+  padding-bottom: 8px;
+
+.sc-asterisk
+  padding-left: 4px;
+
+
+.sc-base-text-field, .sc-base-select, .sc-ssn, .sc-datepicker, .sc-password
+  .v-select__slot .v-label:not(.v-label--active)
+    max-width: calc(100% - 28px);
+  .v-select__slot .v-label.error--text:not(.v-label--active)
+    max-width: calc(100% - 52px);
+  .v-label
+    display: flex;
+
+
+.sc-required:after
+  required;
+
+
+.sc-required-red:after
+  required;
+  color: var(--v-error-base);
+
+
+.sc-full-width
+  width: 100%;
+
+.sc-base-select
+  .theme--light.v-input--selection-controls.v-input--is-disabled:not(.v-input--indeterminate) .v-icon.accent--text
+    color: var(--v-accent-base) !important;
+

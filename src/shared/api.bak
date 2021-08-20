@@ -1,0 +1,87 @@
+import axios from "axios";
+
+export default {
+  getEnv() {
+    let env = "";
+    const hostEnv = window.location.hostname.split(".")[0];
+    if (hostEnv == "localhost") {
+      env = "gtwt";
+    }
+    if (hostEnv == "dev" || hostEnv == "test") {
+      env = `gtw${hostEnv[0]}`;
+    }
+    return { env, hostEnv };
+  },
+  getBaseUrl(self = true) {
+    let baseUrl = "/";
+    if (self) {
+      let { env } = this.getEnv();
+      env = env !== "" ? `${env}.` : "";
+      baseUrl = `https://${env}ClientNameonline.com/`;
+    }
+    return baseUrl;
+  },
+  async getRequest(url, headers, params, baseEnv = true) {
+    /* return await axios.get(this.getBaseUrl(baseEnv) + url, {
+      headers: headers,
+      params: params,
+    }); */
+    if (url === "pol/myaccount/api/2fa/communicationoptions") {
+      return Promise.resolve({
+        status: 200,
+        data: {
+          preferenceInd: "E",
+          phoneOptions: ["(***) ***-3543", "(***) ***-3545"],
+          emailOptions: ["test@mail.com", "tests@mail.com"]
+        }
+      });
+    }
+    if (url === "pol/myaccount/api/password/reset/eligibility")
+      return Promise.resolve({
+        headers: {
+          session: "somesessionkey"
+        },
+        data: {
+          message: null,
+          primaryCo: "04",
+          eligibleToResetPwd: true,
+          rvpOrAbove: true
+        }
+      });
+    if (url === "pol/session/info")
+      return Promise.resolve({
+        data: { userId: "rep123" }
+      });
+  },
+  async postRequest(url, headers, body, baseEnv = true) {
+    /* return await axios.post(this.getBaseUrl(baseEnv) + url, body, {
+      headers: headers,
+    }); */
+    if (url == "pol/myaccount/users/mfa/verification/otp") {
+      /* return Promise.resolve({
+          headers: {session: "sddgfdg"},
+          status: 200
+      }) */
+      return Promise.reject({ data: { error: { errorCode: 4038, count: 3 } } });
+    }
+    if (url == "pol/users/password_reset/otp") {
+      //return Promise.resolve();
+      return Promise.reject({
+        response: { data: { error: { errorCode: 4030 } } }
+      });
+    }
+  },
+  redirectToLogin(applicationSource = "") {
+    let { hostEnv } = this.getEnv();
+    hostEnv = hostEnv == "www" ? "" : hostEnv + ".";
+    if (hostEnv == "localhost.") {
+      window.open("/forgotpassword", "_self");
+      return;
+    }
+    if (applicationSource === "PriApp") {
+      window.parent.postMessage("PRIAPPLOGIN", "*");
+    } else {
+      window.open(`https://${hostEnv}ClientNameonline.com`, "_self");
+    }
+  }
+};

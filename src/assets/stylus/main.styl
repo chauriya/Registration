@@ -1,0 +1,80 @@
+.v-application *:not(i)
+  font-family: 'Open Sans', sans-serif !important;
+
+.v-application
+  .text-h6
+    font-weight: 400 !important;
+  .font-sans
+    font-family: 'Open Sans' !important;
+    line-height: 1.5 !important;
+  .font-weight-semibold
+    font-weight: 600 !important;
+  .break-word
+    word-break: break-all;
+
+.v-text-field
+  .v-input__slot
+      border-bottom: 1px solid var(--v-black-base);
+
+.checkbox-group
+  .v-input__control
+    .v-input__slot
+      label
+        color: var(--v-black400-base) !important;
+      .v-input--selection-controls__input
+        margin-bottom: 40px !important;
+        @media (min-width: 960px)
+          margin-bottom: 20px !important;
+        .v-icon
+          font-size: 20px !important;
+          margin-bottom: 16px;
+// -------------- Dialog -------------------------
+.dialog
+  .dialog-close
+    text-align: right
+  &.error-dialog
+  .dialog-text
+    padding-top: 0
+  .dialog-text
+    .d-info
+      font-size: 16px
+      font-weight: bold
+      margin-bottom: 10px
+      font-family: 'Open Sans', sans-serif
+    .d-desc
+      font-size: 16px
+      line-height: 1.5
+      color: $off-black-color
+      font-weight: 500
+
+
+
+// -------------- Footer Style Page End -------------------------
+
+// Banner Style 
+
+.banner-wrap
+  .wrap-icon
+    font-size: 20px;
+    line-height: 1;
+  .wrap-close
+    margin: 0px 0 26px 0;
+    padding:0px;
+    cursor: pointer;
+.success-wrap
+  border-top: 6px solid var(--v-success-base) !important;
+
+.success-icon-wrap
+  color: var(--v-success-base) !important;
+
+.error-wrap
+  border-top: 6px solid var(--v-error-base);
+
+.error-icon-wrap
+  color: var(--v-error-base) !important;
+
+.warning-wrap
+  border-top: 6px solid var(--v-warning-base);
+
+.warning-icon-wrap
+  color: var(--v-warning-base) !important;
